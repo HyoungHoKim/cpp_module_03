@@ -10,6 +10,7 @@ private:
 	int hit_points;
 	int max_hit_points;
 	int energy_points;
+	int max_energy_points;
 	int level;
 	std::string name;
 	int melee_attack_damage;
@@ -25,6 +26,7 @@ public:
 	int get_hit_points(void) const;
 	int get_max_hit_points(void) const;
 	int get_energy_points(void) const;
+	int get_max_energy_points(void) const;
 	int get_level(void) const;
 	std::string get_name(void) const;
 	int get_melee_attack_damage(void) const;
