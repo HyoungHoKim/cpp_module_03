@@ -129,11 +129,22 @@ void FragTrap::meleeAttack(std::string const &target)
 
 void FragTrap::takeDamage(unsigned int amount)
 {
-	std::cout << 
+	std::cout << "Take " << amount << " Damage!!!" << std::endl;
 	this->hit_points -= (amount - this->ranged_attack_reduction);
 	if (this->hit_points < 0)
+	{
 		this->hit_points = 0;
+		std::cout << "I can see... the code" << std::endl;
+		return ;
+	}
+	std::cout << "Oh my God, I'm leaking! I think I'm leaking! Ahhhh,
+	 I'm leaking! There's oil everywhere!" << std::endl; 
 }
 
-void FragTrap::beRepaired(unsigned int amount);
+void FragTrap::beRepaired(unsigned int amount)
+{
+	std::cout << "Repair " << amount << " HP!!!" << std::endl;
+	this->hit_points += amount; 
+}
+
 void FragTrap::vaulthunter_dot_exe(std::string const &target);
