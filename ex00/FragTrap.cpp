@@ -1,3 +1,5 @@
+#include "FragTrap.hpp"
+
 FragTrap::FragTrap()
 {
 	std::cout << "------- Default Constructor Called -------" << std::endl;
@@ -13,7 +15,7 @@ FragTrap::FragTrap()
 	this->armor_damage_reduction = 5;
 }
 
-FragTrap::FragTrap(string _name);
+FragTrap::FragTrap(std::string _name)
 {
 	std::cout << "------- Name Constructor Called -------" << std::endl;
 	std::cout << _name << " is over here!" << std::endl; 
@@ -48,7 +50,7 @@ FragTrap::~FragTrap()
 	std::cout << "------- Destructor Called -------" << std::endl;
 }
 
-FragTrap &FragTrap::operator=(const FlagTrap &_flagtrap)
+FragTrap &FragTrap::operator=(const FragTrap &_flagtrap)
 {
 	std::cout << "------- = overloading Called -------" << std::endl;
 	std::cout << _flagtrap.get_name() << " is over here!" << std::endl;
@@ -129,22 +131,70 @@ void FragTrap::meleeAttack(std::string const &target)
 
 void FragTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "Take " << amount << " Damage!!!" << std::endl;
-	this->hit_points -= (amount - this->ranged_attack_reduction);
+	std::cout << "Take " << amount - this->armor_damage_reduction << " Damage!!!" << std::endl;
+	this->hit_points -= (amount - this->armor_damage_reduction);
 	if (this->hit_points < 0)
 	{
 		this->hit_points = 0;
+		std::cout << "Hit points : " << this->hit_points << std::endl;
 		std::cout << "I can see... the code" << std::endl;
 		return ;
 	}
-	std::cout << "Oh my God, I'm leaking! I think I'm leaking! Ahhhh,
-	 I'm leaking! There's oil everywhere!" << std::endl; 
+	std::cout << "Hit points : " << this->hit_points << std::endl;
+	std::cout << "Oh my God, I'm leaking! I think I'm leaking! Ahhhh, I'm leaking! There's oil everywhere!" << std::endl; 
 }
 
 void FragTrap::beRepaired(unsigned int amount)
 {
 	std::cout << "Repair " << amount << " HP!!!" << std::endl;
-	this->hit_points += amount; 
+	this->hit_points += amount;
+	if (this->hit_points > this->max_hit_points)
+	{
+		this->hit_points = this->max_hit_points;
+		std::cout << "Hit points : " << this->hit_points << std::endl;
+		std::cout << "I am the best robot. Yeah, yeah, yeah, I am the best robot. Ooh, ooh, here we go!" << std::endl;
+		return ;
+	}
+	std::cout << "Hit points : " << this->hit_points << std::endl;
+	std::cout << "Good as new, I think. Am I leaking?" << std::endl;
 }
 
-void FragTrap::vaulthunter_dot_exe(std::string const &target);
+void FragTrap::vaulthunter_dot_exe(std::string const &target)
+{
+	if (this->energy_points < 25)
+		std::cout << "Not Enough Energy!!!" << std::endl;
+	else
+	{
+		this->energy_points -= 25;
+		std::string name_pool[8] = {
+			"Drop the Hammer",
+			"Killbot",
+			"Hyperion Punch",
+			"One Last Thing",
+			"Repulsive", 
+		};
+
+		int num;
+		srand((unsigned int)time(NULL));
+		for (int i = 0; i < 5; i++)
+		{
+			num = rand() % 5;
+			std::cout << "FR4G-TP " << this->name << " attacks " 
+				<< target << " " << name_pool[num] << std::endl;
+		}
+	}
+}
+
+void FragTrap::print_status(void)
+{
+	std::cout << "------- FR4G-TP : " << this->name << "'s status -------" << std::endl;
+	std::cout << "Hit points : " << this->hit_points << std::endl;
+	std::cout << "Max hit points : " << this->max_hit_points << std::endl;
+	std::cout << "Energy points : " << this->energy_points << std::endl;
+	std::cout << "Max energy points : " << this->max_energy_points << std::endl;
+	std::cout << "Level : " << this->level << std::endl;
+	std::cout << "Name : " << this->name << std::endl;
+	std::cout << "Melee attack damage : " << this->melee_attack_damage << std::endl;
+	std::cout << "Ranged attack damage : " << this->ranged_attack_damage << std::endl;
+	std::cout << "Armor damage reduction : " << this->armor_damage_reduction << std::endl;
+}

@@ -18,10 +18,10 @@ private:
 	int armor_damage_reduction;
 public:
 	FragTrap();
-	FragTrap(string _name);
+	FragTrap(std::string _name);
 	FragTrap(const FragTrap &_flagtrap);
 	~FragTrap();
-	FragTrap &operator=(const FlagTrap &_flagtrap);
+	FragTrap &operator=(const FragTrap &_flagtrap);
 
 	int get_hit_points(void) const;
 	int get_max_hit_points(void) const;
@@ -38,6 +38,8 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 	void vaulthunter_dot_exe(std::string const &target);
-}
+
+	void print_status(void);
+};
 
 #endif
