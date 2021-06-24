@@ -4,7 +4,9 @@
 #include <iostream>
 #include <string>
 
-class ScavTrap
+#include "ClapTrap.hpp"
+
+class ScavTrap : public ClapTrap
 {
 public:
 	ScavTrap();

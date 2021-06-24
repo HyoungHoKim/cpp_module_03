@@ -19,16 +19,16 @@ protected:
 
 public:
 	ClapTrap();
-	ClapTrap::ClapTrap (int _hit_points,
-						int _max_hit_points,
-						int _energy_points,
-						int _max_energy_points,
-						int _level,
-						std::string _name,
-						int _melee_attack_damage,
-						int _ranged_attack_damage,
-						int _armor_damage_reducion
-						);
+	ClapTrap(int _hit_points,
+			 int _max_hit_points,
+			 int _energy_points,
+			 int _max_energy_points,
+			 int _level,
+			 std::string _name,
+			 int _melee_attack_damage,
+			 int _ranged_attack_damage,
+			 int _armor_damage_reducion
+			);
 	ClapTrap(const ClapTrap &_claptrap);
 	~ClapTrap();
 	ClapTrap &operator=(const ClapTrap &_claptrap);
